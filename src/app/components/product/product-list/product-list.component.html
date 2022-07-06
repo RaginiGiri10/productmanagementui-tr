@@ -1,0 +1,46 @@
+
+<div [class]="messageClass" *ngIf="!isProductsAvailable">
+    {{message}}
+</div>
+
+
+    <h4>Available Products</h4>
+    <hr/>
+    <table class="table" *ngIf="isProductsAvailable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Origin</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="productList.length>0">
+                <tr *ngFor="let product of productList">
+                    <td>{{product.id}}</td>
+                    <td>{{product.productName}}</td>
+                    <td>{{product.productCategory}}</td>
+                    <td>{{product.productOrigin}}</td>
+                    <td>{{product.productPrice}}</td>
+                    <td>
+                        <button class="btn-primary" (click)="editProduct(product.id)">Edit</button>
+                    </td>
+                    <td>
+                        <button class="btn-primary" (click)="deleteProduct(product.id)">Delete</button>
+                    </td>
+                         
+                    </tr>
+            </ng-container>
+    
+            <tr *ngIf="productList.length==0">
+                <td colspan="5">
+                    No records found
+                </td>
+            </tr>
+           
+        </tbody>
+    </table>
+
+

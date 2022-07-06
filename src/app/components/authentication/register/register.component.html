@@ -1,0 +1,38 @@
+
+<ul *ngIf="hasErrors">
+    <li class="text-danger" *ngFor="let error of registrationErrors">{{error}}</li>
+</ul>
+
+<form #registerForm="ngForm" (ngSubmit)="registerUser()">
+    <div class="mb-3 mt-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" class="form-control" id="email"
+       placeholder="Enter email" 
+       name="email"
+       [(ngModel)]="registrationDetails.email" 
+       required
+       #email="ngModel">
+       <p class="text-danger" *ngIf="email.invalid && email.touched">Email is mandatory</p>
+    </div>
+    <div class="mb-3">
+      <label for="pwd" class="form-label">Password:</label>
+      <input type="password" class="form-control" id="password" 
+      placeholder="Enter password" 
+      name="password"
+      [(ngModel)]="registrationDetails.password" 
+      required
+      #password="ngModel">
+      <p class="text-danger" *ngIf="password.invalid && password.touched">Password is mandatory</p>
+    </div>
+    <div class="mb-3">
+        <label for="pwd" class="form-label">Confirm Password:</label>
+        <input type="password" class="form-control" id="confirmPassword"
+         placeholder="Enter password" 
+         name="confirmPassword"
+         [(ngModel)]="registrationDetails.confirmPassword"
+          required
+          #confirmPassword="ngModel">       
+         <p class="text-danger" *ngIf="confirmPassword.touched && (registrationDetails.password != registrationDetails.confirmPassword)">Password missmatch</p>
+      </div>
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+  </form>

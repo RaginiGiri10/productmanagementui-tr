@@ -1,0 +1,55 @@
+
+
+
+<form #addProductForm="ngForm" (ngSubmit)="addProduct()">
+    <div class="mb-3 mt-3">
+      <label for="productName" class="form-label">Name</label>
+      <input type="text" class="form-control" [class.hasError]="productName.invalid && productName.touched" id="productName"      
+       name="productName"
+       [(ngModel)]="product.productName" 
+       required
+       #productName="ngModel">   
+       
+       <p class="text-danger" *ngIf="productName.invalid && productName.touched">Product name is mandatory</p>
+    </div>
+
+    <div class="mb-3 mt-3">
+        <label for="productCategoryId" productCategoryIdclass="form-label">Category</label>
+        <select class="form-select" name="productCategoryId"
+         id="productCategoryId"
+        
+         [(ngModel)]="product.productCategoryId"
+         #productCategoryId="ngModel">
+         
+            <option [value]="category.id" *ngFor="let category of product.productCategories">
+                {{category.categoryName}}
+            </option>
+          </select>    
+       
+    </div>
+
+    <div class="mb-3 mt-3">
+      <label for="productOrigin" class="form-label">Origin</label>
+      <input type="text" class="form-control" id="productOrigin"      
+       name="productOrigin"
+       [(ngModel)]="product.productOrigin" 
+       [class.hasError]="productOrigin.invalid && productOrigin.touched"
+       required
+       #productOrigin="ngModel">   
+       <p class="text-danger" *ngIf="productOrigin.invalid && productOrigin.touched">Product origin is mandatory</p>     
+    </div>
+
+    <div class="mb-3 mt-3">
+      <label for="productPrice" class="form-label">Price</label>
+      <input type="number" class="form-control" id="productPrice"      
+       name="productPrice"
+       [class.hasError]="productPrice.invalid && productPrice.touched"
+       [(ngModel)]="product.productPrice" 
+       required
+       #productPrice="ngModel">      
+       <p class="text-danger" *ngIf="productPrice.invalid && productPrice.touched">Product price is mandatory</p> 
+    </div>
+    
+ 
+    <button [disabled]="addProductForm.invalid" type="submit" class="btn btn-primary" >Add Product</button>
+  </form>

@@ -1,0 +1,48 @@
+
+
+
+<form (ngSubmit)="updateProduct()">
+    <div class="mb-3 mt-3">
+      <label for="productName" class="form-label">Name</label>
+      <input type="text" class="form-control" id="productName"      
+       name="productName"
+       [(ngModel)]="editproduct.productName" 
+       required
+       #productName="ngModel">       
+    </div>
+
+    <div class="mb-3 mt-3">
+        <label for="productCategoryId" productCategoryIdclass="form-label">Category</label>
+        <select class="form-select" name="productCategoryId"
+         id="productCategoryId"
+         [(ngModel)]="editproduct.productCategoryId"
+         #productCategoryId="ngModel" >
+            <option [value]="category.id" *ngFor="let category of editproduct.productCategories">
+                {{category.categoryName}}
+            </option>
+          </select>    
+        
+    </div>
+
+    <div class="mb-3 mt-3">
+      <label for="productOrigin" class="form-label">Origin</label>
+      <input type="text" class="form-control" id="productOrigin"      
+       name="productOrigin"
+       [(ngModel)]="editproduct.productOrigin" 
+       required
+       #productOrigin="ngModel">       
+    </div>
+
+    <div class="mb-3 mt-3">
+      <label for="productPrice" class="form-label">Price</label>
+      <input type="number" class="form-control" id="productPrice"      
+       name="productPrice"
+       [(ngModel)]="editproduct.productPrice" 
+       required
+       #productPrice="ngModel">       
+    </div>
+    
+ 
+    <button type="submit" class="btn btn-primary" >Update</button>
+  </form>
+

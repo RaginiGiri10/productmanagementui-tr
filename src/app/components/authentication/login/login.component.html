@@ -1,0 +1,30 @@
+
+<ul *ngIf="hasErrors">
+    <li class="text-danger" *ngFor="let error of loginErrors">{{error}}</li>
+</ul>
+
+<form #loginForm="ngForm" (ngSubmit)="loginUser()">
+    <div class="mb-3 mt-3">
+      <label for="email" class="form-label">UserName:</label>
+      <input type="email" class="form-control" id="userName"
+       placeholder="Enter email as user name" 
+       name="userName"
+       [(ngModel)]="loginDetails.userName" 
+       required
+       #userName="ngModel">
+       <p class="text-danger" *ngIf="userName.invalid && userName.touched">UserName is mandatory</p>
+    </div>
+    <div class="mb-3">
+      <label for="pwd" class="form-label">Password:</label>
+      <input type="password" class="form-control" id="password" 
+      placeholder="Enter password" 
+      name="password"
+      [(ngModel)]="loginDetails.password" 
+      required
+      #password="ngModel">
+      <p class="text-danger" *ngIf="password.invalid && password.touched">Password is mandatory</p>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+    <a [routerLink]="['/register']">New User?</a>
+  </form>
